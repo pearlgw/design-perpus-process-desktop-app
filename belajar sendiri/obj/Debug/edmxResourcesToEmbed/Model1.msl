@@ -1,0 +1,32 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+  <EntityContainerMapping StorageEntityContainer="PerpsModelStoreContainer" CdmEntityContainer="PerpsEntities1">
+    <EntitySetMapping Name="Tbl_Peminjaman">
+      <EntityTypeMapping TypeName="PerpsModel.Tbl_Peminjaman">
+        <MappingFragment StoreEntitySet="Tbl_Peminjaman">
+          <ScalarProperty Name="ID_Peminjaman" ColumnName="ID_Peminjaman" />
+          <ScalarProperty Name="ID_User" ColumnName="ID_User" />
+          <ScalarProperty Name="Nama" ColumnName="Nama" />
+          <ScalarProperty Name="Kode_Buku" ColumnName="Kode_Buku" />
+          <ScalarProperty Name="Judul_Buku" ColumnName="Judul_Buku" />
+          <ScalarProperty Name="Tanggal_Pinjam" ColumnName="Tanggal_Pinjam" />
+          <ScalarProperty Name="Tanggal_Denda" ColumnName="Tanggal_Denda" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Tbl_Pengembalian">
+      <EntityTypeMapping TypeName="PerpsModel.Tbl_Pengembalian">
+        <MappingFragment StoreEntitySet="Tbl_Pengembalian">
+          <ScalarProperty Name="ID_Pengembalian" ColumnName="ID_Pengembalian" />
+          <ScalarProperty Name="ID_Peminjaman" ColumnName="ID_Peminjaman" />
+          <ScalarProperty Name="ID_User" ColumnName="ID_User" />
+          <ScalarProperty Name="Nama" ColumnName="Nama" />
+          <ScalarProperty Name="Kode_Buku" ColumnName="Kode_Buku" />
+          <ScalarProperty Name="Judul_Buku" ColumnName="Judul_Buku" />
+          <ScalarProperty Name="Tanggal_Kembali" ColumnName="Tanggal_Kembali" />
+          <ScalarProperty Name="Denda" ColumnName="Denda" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+  </EntityContainerMapping>
+</Mapping>

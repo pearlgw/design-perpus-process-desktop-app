@@ -1,0 +1,50 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="PerpsModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+  <EntityType Name="Tbl_Peminjaman">
+    <Key>
+      <PropertyRef Name="ID_Peminjaman" />
+    </Key>
+    <Property Name="ID_Peminjaman" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="ID_User" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="Nama" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="Kode_Buku" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="Judul_Buku" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="Tanggal_Pinjam" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="Tanggal_Denda" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <NavigationProperty Name="Tbl_Pengembalian" Relationship="Self.ID_Peminjaman" FromRole="Tbl_Peminjaman" ToRole="Tbl_Pengembalian" />
+  </EntityType>
+  <EntityType Name="Tbl_Pengembalian">
+    <Key>
+      <PropertyRef Name="ID_Pengembalian" />
+    </Key>
+    <Property Name="ID_Pengembalian" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="ID_Peminjaman" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="ID_User" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="Nama" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="Kode_Buku" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="Judul_Buku" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="Tanggal_Kembali" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="Denda" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <NavigationProperty Name="Tbl_Peminjaman" Relationship="Self.ID_Peminjaman" FromRole="Tbl_Pengembalian" ToRole="Tbl_Peminjaman" />
+  </EntityType>
+  <Association Name="ID_Peminjaman">
+    <End Role="Tbl_Peminjaman" Type="Self.Tbl_Peminjaman" Multiplicity="0..1" />
+    <End Role="Tbl_Pengembalian" Type="Self.Tbl_Pengembalian" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Tbl_Peminjaman">
+        <PropertyRef Name="ID_Peminjaman" />
+      </Principal>
+      <Dependent Role="Tbl_Pengembalian">
+        <PropertyRef Name="ID_Peminjaman" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <EntityContainer Name="PerpsEntities1" annotation:LazyLoadingEnabled="true">
+    <EntitySet Name="Tbl_Peminjaman" EntityType="Self.Tbl_Peminjaman" />
+    <EntitySet Name="Tbl_Pengembalian" EntityType="Self.Tbl_Pengembalian" />
+    <AssociationSet Name="ID_Peminjaman" Association="Self.ID_Peminjaman">
+      <End Role="Tbl_Peminjaman" EntitySet="Tbl_Peminjaman" />
+      <End Role="Tbl_Pengembalian" EntitySet="Tbl_Pengembalian" />
+    </AssociationSet>
+  </EntityContainer>
+</Schema>

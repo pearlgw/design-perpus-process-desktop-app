@@ -1,0 +1,48 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="PerpsModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+  <EntityType Name="Tbl_Peminjaman">
+    <Key>
+      <PropertyRef Name="ID_Peminjaman" />
+    </Key>
+    <Property Name="ID_Peminjaman" Type="varchar" MaxLength="50" Nullable="false" />
+    <Property Name="ID_User" Type="nvarchar" MaxLength="50" />
+    <Property Name="Nama" Type="nvarchar" MaxLength="50" />
+    <Property Name="Kode_Buku" Type="nvarchar" MaxLength="50" />
+    <Property Name="Judul_Buku" Type="nvarchar" MaxLength="50" />
+    <Property Name="Tanggal_Pinjam" Type="nvarchar" MaxLength="50" />
+    <Property Name="Tanggal_Denda" Type="nvarchar" MaxLength="50" />
+  </EntityType>
+  <EntityType Name="Tbl_Pengembalian">
+    <Key>
+      <PropertyRef Name="ID_Pengembalian" />
+    </Key>
+    <Property Name="ID_Pengembalian" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="ID_Peminjaman" Type="varchar" MaxLength="50" />
+    <Property Name="ID_User" Type="nvarchar" MaxLength="50" />
+    <Property Name="Nama" Type="nvarchar" MaxLength="50" />
+    <Property Name="Kode_Buku" Type="nvarchar" MaxLength="50" />
+    <Property Name="Judul_Buku" Type="nvarchar" MaxLength="50" />
+    <Property Name="Tanggal_Kembali" Type="nvarchar" MaxLength="50" />
+    <Property Name="Denda" Type="varchar" MaxLength="50" />
+  </EntityType>
+  <Association Name="ID_Peminjaman">
+    <End Role="Tbl_Peminjaman" Type="Self.Tbl_Peminjaman" Multiplicity="0..1" />
+    <End Role="Tbl_Pengembalian" Type="Self.Tbl_Pengembalian" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Tbl_Peminjaman">
+        <PropertyRef Name="ID_Peminjaman" />
+      </Principal>
+      <Dependent Role="Tbl_Pengembalian">
+        <PropertyRef Name="ID_Peminjaman" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <EntityContainer Name="PerpsModelStoreContainer">
+    <EntitySet Name="Tbl_Peminjaman" EntityType="Self.Tbl_Peminjaman" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Tbl_Pengembalian" EntityType="Self.Tbl_Pengembalian" Schema="dbo" store:Type="Tables" />
+    <AssociationSet Name="ID_Peminjaman" Association="Self.ID_Peminjaman">
+      <End Role="Tbl_Peminjaman" EntitySet="Tbl_Peminjaman" />
+      <End Role="Tbl_Pengembalian" EntitySet="Tbl_Pengembalian" />
+    </AssociationSet>
+  </EntityContainer>
+</Schema>
